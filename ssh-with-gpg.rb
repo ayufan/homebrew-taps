@@ -3,8 +3,7 @@ class SshWithGpg < Formula
 
   url "file:///dev/null"
   sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  version "0.1"
-
+  version "0.2"
   depends_on "gnupg2"
   depends_on "pinentry-mac"
 
@@ -120,7 +119,7 @@ class SshWithGpg < Formula
     run() {
       echo "Starting gpg-agent"
       gpgconf --launch gpg-agent
-      launchctl setenv SSH_AUTH_SOCK "$HOME/.gnupg/S.gpg-agent.ssh"
+      ln -sf "$HOME/.gnupg/S.gpg-agent.ssh" "$SSH_AUTH_SOCK"
 
       echo "Running $0..."
       tail -n 0 -F "$GPG_AGENT_LOG_FILE" | while read LINE; do
