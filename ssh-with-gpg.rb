@@ -3,7 +3,7 @@ class SshWithGpg < Formula
 
   url "file:///dev/null"
   sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  version "0.2"
+  version "0.2.1"
   depends_on "gnupg2"
   depends_on "pinentry-mac"
 
@@ -14,12 +14,18 @@ class SshWithGpg < Formula
 
   def caveats
     <<~EOS
-      Now:
+      Add the following line to your bash/zsh profile (e.g. ~/.bashrc, ~/.profile, ~/.bash_profile or ~/.zshrc)
 
-        1. Start service
+        gpgconf --launch gpg-agent
+        ln -sf $HOME/.gnupg/S.gpg-agent.ssh $SSH_AUTH_SOCK
+
+      Then:
+
+        1. Start service `brew services start ayufan/taps/ssh-with-gpg`
         2. Run `ssh-with-gpg verify` to verify
-        3. Log Out
-        4. Additionally install `brew cask install yubico-yubikey-manager`
+        3. Start new terminal session
+        4. Insert `Yubikey` and run `ssh-add -L`
+        5. (optionally) Install `brew cask install yubico-yubikey-manager`
     EOS
   end
 
