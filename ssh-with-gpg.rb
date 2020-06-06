@@ -3,7 +3,7 @@ class SshWithGpg < Formula
 
   url "file:///dev/null"
   sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  version "0.2.2"
+  version "0.2.3"
   depends_on "gnupg2"
   depends_on "pinentry-mac"
 
@@ -25,6 +25,7 @@ class SshWithGpg < Formula
         2. Run `ssh-with-gpg verify` to verify
         3. Start new terminal session
         4. Insert `Yubikey` and run `ssh-add -L`
+        5. For `sshpiv` support install `brew cask install yubico-yubikey-piv-manager`
         5. (optionally) Install `brew cask install yubico-yubikey-manager`
     EOS
   end
